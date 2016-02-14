@@ -1,5 +1,13 @@
 require 'faker'
 
+post_attributes = [
+    { title: "This is a unique post in seeds.rb", body: "This is the body of my unique post in seeds.rb" },
+    { title: "This is a another unique post in seeds.rb", body: "This is the other body of my unique post in seeds.rb" },
+  ]
+post_attributes.each do |attributes|
+  Post.where(attributes).first_or_create
+end
+
 #Create Posts
 50.times do
   Post.create!(
