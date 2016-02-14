@@ -1,2 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.social-btn {
+  display: inline-block;
+  height: 25px;
+  width: 55px;
+  border: 2px solid;
+  text-align: center;
+  background: #337ab7;
+  color: #fff;
+}
