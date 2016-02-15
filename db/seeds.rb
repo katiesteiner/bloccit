@@ -1,16 +1,20 @@
 require 'faker'
-
-post_attributes = [
-    { title: "This is a unique post in seeds.rb", body: "This is the body of my unique post in seeds.rb" },
-    { title: "This is a another unique post in seeds.rb", body: "This is the other body of my unique post in seeds.rb" },
-  ]
-post_attributes.each do |attributes|
-  Post.where(attributes).first_or_create
+#create users
+5.times do
+  user = User.new(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Lorem.characters(10)
+    )
+  user.skip_confirmation!
+  user.save!
 end
+users = User.all
 
 #Create Posts
 50.times do
   Post.create!(
+    user: users.sample,
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph
     )
@@ -20,6 +24,7 @@ posts = Post.all
 #Create comments
 100.times do
   Comment.create!(
+      #user: users.sample #don't have users associated with comments yet
       post: posts.sample,
       body: Faker::Lorem.paragraph
     )
@@ -41,7 +46,15 @@ end
     )
 end
 
+user = User.first
+user.skip_reconfirmation!
+user.update_attributes!(
+  email: 'katiewkoenig@gmail.com',
+  password: 'helloworld'
+  )
+
 puts "Seed finished"
+puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
