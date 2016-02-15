@@ -33,7 +33,16 @@ end
     )
 end
 
+#create questions
+5.times do
+  Question.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph
+    )
+end
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created"
