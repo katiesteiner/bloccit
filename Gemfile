@@ -44,6 +44,8 @@ gem 'devise'
 gem 'figaro', '1.0'
 
 gem 'pundit'
+
+gem 'redcarpet'
 # Use unicorn as the app server
 # gem 'unicorn'
 
