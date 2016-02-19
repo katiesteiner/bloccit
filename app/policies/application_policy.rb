@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(id: record.id).exists?
   end
 
   def create?
@@ -31,23 +31,16 @@ class ApplicationPolicy
   end
 
   def destroy?
-    updated?
+    update?
   end
 
   def scope
     record.class
   end
 
-  class Scope
-    attr_reader :user, :scope
+  private
 
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope
-    end
+  def can_moderate?(user, record)
+    (record.user == user || user.admin? || user.moderator?)
   end
 end
