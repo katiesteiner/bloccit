@@ -1,4 +1,3 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 .social-btn {
@@ -17,4 +16,9 @@
 
 .nav {
   margin-top: 5px;
+}
+
+.vote-arrows {
+  width: 40px;
+  text-align: center;
 }
