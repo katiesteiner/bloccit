@@ -8,7 +8,7 @@ describe User do
       
     end
 
-    xit "returns the appropriate favorite if it exists" do
+    it "returns the appropriate favorite if it exists" do
     end
   end
 end
