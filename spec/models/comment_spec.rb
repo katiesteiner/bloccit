@@ -26,5 +26,5 @@ describe Comment do
 
       @comment.save
     end
-  end
 end
+
