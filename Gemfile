@@ -59,6 +59,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
 end
+
+gem 'newrelic_rpm'
+
+gem 'puma', group: :production
+gem 'thin', group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
