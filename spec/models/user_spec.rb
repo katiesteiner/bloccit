@@ -24,8 +24,8 @@ describe User do
       create(:comment, user: @user1, post: post)
 
       @user2 = create(:user)
-      post = create(:post, user: @user1)
-      create(:comment, user: @user1, post: post)
+      post = create(:post, user: @user2)
+      create(:comment, user: @user2, post: post)
     end
 
     it "should return users based on comments + posts" do
