@@ -1,13 +1,21 @@
 class CommentsController < ApplicationController
 
+  respond_to :html, :js
+
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
-    @comment.user_id = current_user.id
+    @comment = current_user.comments.new(comment_params)
+    @comment.post = @post
+    @new_comment = Comment.new
+
     if @comment.save
-      redirect_to [@post.topic, @post], notice: "Comment was saved"
+      flash[:notice] = "Comment was saved"
     else
-      redirect_to [@post.topic, @post], notice: "There was an error saving the comment. Please try again."
+      flash[:error] = "There was an error saving the comment. Please try again."
+    end
+
+    respond_with(@comment) do |format|
+      format.html{ redirect_to [@post.topic, @post ] }
     end
   end
 
@@ -22,9 +30,8 @@ class CommentsController < ApplicationController
       flash[:error] = "Comment couldn't be deleted. Try again."
     end
 
-    respond_to do |format|
-      format.html
-      format.js
+    respond_with(@comment) do |format|
+      format.html{ redirect_to [@post.topic, @post] }
     end
   end
 
